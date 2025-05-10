@@ -12,17 +12,12 @@ import com.example.demo.service.StockService;
 @CrossOrigin(origins = "*")
 public class StockController {
 
-	@Autowired
-	private StockService stockService;
+    @Autowired
+    private StockService stockService;
 
-	@GetMapping(value = "/{symbol}", produces = "application/json")
-	public ResponseEntity<StockResponse> getStock(@PathVariable String symbol) {
-		try {
-			StockResponse stockData = stockService.getStockData(symbol);
-			return ResponseEntity.ok(stockData);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-
+    @GetMapping(value = "/{symbol}", produces = "application/json")
+    public ResponseEntity<StockResponse> getStock(@PathVariable String symbol) throws Exception {
+        StockResponse stockData = stockService.getStockData(symbol);
+        return ResponseEntity.ok(stockData);
+    }
 }
